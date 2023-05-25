@@ -16,8 +16,7 @@ export interface SerializedPair {
 export const updateMatchesDarkMode = createAction<{ matchesDarkMode: boolean }>('user/updateMatchesDarkMode')
 export const updateUserDarkMode = createAction<{ userDarkMode: boolean }>('user/updateUserDarkMode')
 export const updateUserExpertMode = createAction<{ userExpertMode: boolean }>('user/updateUserExpertMode')
-export const updateUserSingleHopOnly = createAction<{ userSingleHopOnly: boolean }>('user/updateUserSingleHopOnly')
-export const updateUserSlippageTolerance = createAction<{ userSlippageTolerance: number | 'auto' }>(
+export const updateUserSlippageTolerance = createAction<{ userSlippageTolerance: number }>(
   'user/updateUserSlippageTolerance'
 )
 export const updateUserDeadline = createAction<{ userDeadline: number }>('user/updateUserDeadline')
@@ -27,4 +26,3 @@ export const addSerializedPair = createAction<{ serializedPair: SerializedPair }
 export const removeSerializedPair = createAction<{ chainId: number; tokenAAddress: string; tokenBAddress: string }>(
   'user/removeSerializedPair'
 )
-export const toggleURLWarning = createAction<void>('app/toggleURLWarning')

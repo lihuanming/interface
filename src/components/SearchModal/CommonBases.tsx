@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text } from 'rebass'
-import { ChainId, Currency, currencyEquals, Token, ETHER } from '@uniswap/sdk-core'
-import styled from 'styled-components/macro'
+import { ChainId, Currency, currencyEquals, ETHER, Token } from 'hermanswap-sdk'
+import styled from 'styled-components'
 
 import { SUGGESTED_BASES } from '../../constants'
 import { AutoColumn } from '../Column'
@@ -28,7 +28,7 @@ const BaseWrapper = styled.div<{ disable?: boolean }>`
 export default function CommonBases({
   chainId,
   onSelect,
-  selectedCurrency,
+  selectedCurrency
 }: {
   chainId?: ChainId
   selectedCurrency?: Currency | null
@@ -49,15 +49,15 @@ export default function CommonBases({
               onSelect(ETHER)
             }
           }}
-          disable={selectedCurrency?.isEther}
+          disable={selectedCurrency === ETHER}
         >
           <CurrencyLogo currency={ETHER} style={{ marginRight: 8 }} />
           <Text fontWeight={500} fontSize={16}>
             ETH
           </Text>
         </BaseWrapper>
-        {(typeof chainId === 'number' ? SUGGESTED_BASES[chainId] ?? [] : []).map((token: Token) => {
-          const selected = selectedCurrency?.isToken && selectedCurrency.address === token.address
+        {(chainId ? SUGGESTED_BASES[chainId] : []).map((token: Token) => {
+          const selected = selectedCurrency instanceof Token && selectedCurrency.address === token.address
           return (
             <BaseWrapper onClick={() => !selected && onSelect(token)} disable={selected} key={token.address}>
               <CurrencyLogo currency={token} style={{ marginRight: 8 }} />
